@@ -2,6 +2,7 @@ package tests.day2;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +67,12 @@ public class BodyAndHeaderVerification {
 
         JsonPath jsonPath= given().pathParam("id", "100")
                                     .when().get("/departments/{id}").jsonPath();
+
+
+        Response response= given().pathParam("id", "100")
+                .when().get("/departments/{id}");
+
+
 
         String manager_id= jsonPath.getString("manager_id");
         System.out.println("manager_id: "+manager_id);
